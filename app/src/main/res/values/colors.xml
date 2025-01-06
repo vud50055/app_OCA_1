@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Màu chính của ứng dụng -->
+    <color name="primary">#6200EE</color> <!-- Màu tím, thay đổi nếu cần -->
+    <color name="primaryDark">#3700B3</color> <!-- Màu tối hơn của primary -->
+    <color name="accent">#03DAC5</color> <!-- Màu xanh lá đậm, có thể thay đổi -->
+
+    <!-- Màu cho nền -->
+    <color name="background">#FFFFFF</color> <!-- Màu nền trắng -->
+    <color name="textBackground">#F1F1F1</color> <!-- Màu nền của TextView hoặc ScrollView -->
+
+    <!-- Màu văn bản -->
+    <color name="black">#000000</color> <!-- Màu chữ đen -->
+    <color name="white">#FFFFFF</color> <!-- Màu chữ trắng -->
+
+</resources>
