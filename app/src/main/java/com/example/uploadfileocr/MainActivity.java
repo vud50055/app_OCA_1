@@ -156,25 +156,35 @@ public class MainActivity extends AppCompatActivity {
         try (ParcelFileDescriptor fileDescriptor = getContentResolver().openFileDescriptor(fileUri, "r")) {
             if (fileDescriptor != null) {
                 PdfRenderer pdfRenderer = new PdfRenderer(fileDescriptor);
-                PdfRenderer.Page page = pdfRenderer.openPage(0); // Đọc trang đầu tiên
 
-                Bitmap bitmap = Bitmap.createBitmap(page.getWidth(), page.getHeight(), Bitmap.Config.ARGB_8888);
-                page.render(bitmap, null, null, PdfRenderer.Page.RENDER_MODE_FOR_DISPLAY);
+                StringBuilder detectedText = new StringBuilder();
 
-                if (textRecognizer.isOperational()) {
-                    Frame frame = new Frame.Builder().setBitmap(bitmap).build();
-                    String detectedText = detectTextFromFrame(frame);
 
-                    if (!detectedText.isEmpty()) {
-                        textView.append(detectedText + "\n\n");  // Thêm kết quả vào TextView hiện có
-                    } else {
-                        Toast.makeText(this, "Không phát hiện được văn bản trong PDF", Toast.LENGTH_SHORT).show();
+                for (int i = 0; i < pdfRenderer.getPageCount(); i++) {
+                    PdfRenderer.Page page = pdfRenderer.openPage(i);
+
+                    Bitmap bitmap = Bitmap.createBitmap(page.getWidth(), page.getHeight(), Bitmap.Config.ARGB_8888);
+                    page.render(bitmap, null, null, PdfRenderer.Page.RENDER_MODE_FOR_DISPLAY);
+
+                    if (textRecognizer.isOperational()) {
+                        Frame frame = new Frame.Builder().setBitmap(bitmap).build();
+                        String textFromPage = detectTextFromFrame(frame);
+                        if (!textFromPage.isEmpty()) {
+                            detectedText.append("Trang ").append(i + 1).append(":\n").append(textFromPage).append("\n\n");
+                        }
                     }
-                } else {
-                    Toast.makeText(this, "Text recognizer không khả dụng", Toast.LENGTH_SHORT).show();
+
+                    // Đóng trang hiện tại
+                    page.close();
                 }
 
-                page.close();
+                // Hiển thị toàn bộ văn bản được phát hiện
+                if (detectedText.length() > 0) {
+                    textView.append(detectedText.toString());
+                } else {
+                    Toast.makeText(this, "Không phát hiện được văn bản trong PDF", Toast.LENGTH_SHORT).show();
+                }
+
                 pdfRenderer.close();
             }
         } catch (IOException e) {
