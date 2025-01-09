@@ -56,24 +56,24 @@ public class MainActivity extends AppCompatActivity {
 
         Button uploadButton = findViewById(R.id.uploadButton);
         uploadButton.setOnClickListener(view -> openFileChooser());
-        Button createPdfButton = findViewById(R.id.createPdfButton);
-        createPdfButton.setOnClickListener(view -> createMyPDF(view));
 
-        // Khởi tạo Text-to-Speech với tiếng Việt
-        textToSpeech = new TextToSpeech(this, status -> {
-            if (status == TextToSpeech.SUCCESS) {
-                Locale vietnamese = new Locale("vi", "VN");
-                int result = textToSpeech.setLanguage(vietnamese);
 
-                if (result == TextToSpeech.LANG_MISSING_DATA) {
-                    Toast.makeText(this, "Thiếu dữ liệu ngôn ngữ. Vui lòng tải gói tiếng Việt.", Toast.LENGTH_LONG).show();
-                } else if (result == TextToSpeech.LANG_NOT_SUPPORTED) {
-                    Toast.makeText(this, "Ngôn ngữ tiếng Việt không được hỗ trợ trên thiết bị này.", Toast.LENGTH_LONG).show();
-                }
-            } else {
-                Toast.makeText(this, "Không thể khởi tạo Text-to-Speech", Toast.LENGTH_LONG).show();
-            }
-        });
+
+//        // Khởi tạo Text-to-Speech với tiếng Việt
+//        textToSpeech = new TextToSpeech(this, status -> {
+//            if (status == TextToSpeech.SUCCESS) {
+//                Locale vietnamese = new Locale("vi", "VN");
+//                int result = textToSpeech.setLanguage(vietnamese);
+//
+//                if (result == TextToSpeech.LANG_MISSING_DATA) {
+//                    Toast.makeText(this, "Thiếu dữ liệu ngôn ngữ. Vui lòng tải gói tiếng Việt.", Toast.LENGTH_LONG).show();
+//                } else if (result == TextToSpeech.LANG_NOT_SUPPORTED) {
+//                    Toast.makeText(this, "Ngôn ngữ tiếng Việt không được hỗ trợ trên thiết bị này.", Toast.LENGTH_LONG).show();
+//                }
+//            } else {
+//                Toast.makeText(this, "Không thể khởi tạo Text-to-Speech", Toast.LENGTH_LONG).show();
+//            }
+//        });
         Button clearButton = findViewById(R.id.clearButton);
         clearButton.setOnClickListener(v -> clearText());
     }

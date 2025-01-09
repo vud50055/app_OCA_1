@@ -32,7 +32,9 @@ android {
 }
 
 dependencies {
-
+    implementation ("com.github.barteksc:android-pdf-viewer:3.2.0-beta.1")
+    implementation( "org.apache.poi:poi:5.2.3")
+    implementation ("org.apache.poi:poi-ooxml:5.2.3")
     implementation(libs.material)
     implementation(libs.activity)
     implementation(libs.constraintlayout)

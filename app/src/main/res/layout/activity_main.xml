@@ -35,19 +35,7 @@
             android:paddingHorizontal="16dp"
             android:elevation="4dp" />
 
-        <!-- Nút để tạo PDF -->
-        <Button
-            android:id="@+id/createPdfButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Create PDF"
-            android:textColor="@color/white"
-            android:backgroundTint="@color/primary"
-            android:textSize="18sp"
-            android:paddingVertical="12dp"
-            android:paddingHorizontal="16dp"
-            android:elevation="4dp"
-            android:layout_marginTop="16dp"/>
+
 
         <!-- Nút để xóa nội dung -->
         <Button
